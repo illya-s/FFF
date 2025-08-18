@@ -1,0 +1,19 @@
+.list-title {
+	color: var(--tit-color);
+}
+.list-title:has(select) {
+	display: grid;
+	grid-template-columns: repeat(2, max-content);
+	align-items: center;
+	justify-content: space-between;
+}
+
+select {
+	padding: 5px 10px;
+
+	border: none;
+	border-radius: 10px;
+	background-color: var(--bn-color);
+
+	color: var(--bn-txt-color);
+}

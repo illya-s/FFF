@@ -1,0 +1,157 @@
+.filters {
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+}
+.filters-cont * {
+	color: var(--txt-color);
+}
+
+
+.toggle-filters-btn {
+	align-self: start;
+
+	display: grid;
+	grid-template-columns: auto 20px;
+	align-items: center;
+	gap: .5rem;
+
+	background-color: transparent;
+
+	color: var(--bn-color);
+	font-size: 1rem;
+	font-weight: bold;
+	user-select: none;
+}
+
+.toggle-filters-btn > h2 {
+	text-decoration: underline;
+}
+
+
+.toggle-filters-btn > svg {
+	transition: transform .2s linear;
+}
+
+.toggle-filters-checkbox {
+	display: none;
+
+	&:checked + svg {
+		transform: rotate(180deg);
+	}
+}
+.filters:has(.toggle-filters-checkbox:checked) .filters-cont {
+	display: flex;
+}
+
+.fields-order_by {
+	padding: 3px;
+
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr 1fr;
+	justify-content: space-between;
+	gap: .5rem;
+
+	border: solid 2px var(--bl2-color);
+	border-radius: 10px;
+}
+.field-order_by {
+	padding: 5px 10px;
+
+	display: grid;
+	place-content: center;
+
+	border-radius: 5px;
+
+	text-align: center;
+	color: var(--txt-color);
+	font-size: 1rem;
+
+	&:has(.fields-order_by-input:checked) {
+		background-color: var(--bn-color);
+		color: var(--bn-txt-color);
+	}
+}
+.fields-order_by-input {
+	display: none;
+}
+
+
+
+.filters-cont {
+	display: none;
+	flex-direction: column;
+	gap: 1rem;
+}
+
+.two-fields {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 1rem;
+}
+
+.radio-fields {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	gap: 1rem;
+}
+
+.filters-block {
+	display: flex;
+	flex-direction: column;
+	gap: .5rem;
+}
+.filters-block > h2 {
+	font-weight: normal;
+}
+
+select, .load-filters {
+	padding: 5px 10px;
+
+	border: none;
+	border-radius: 10px;
+	background-color: var(--bl2-color);
+
+	color: var(--txt-color);
+	font-size: 1rem;
+	cursor: pointer;
+}
+.load-filters {
+	align-self: end;
+
+	font-weight: bold;
+
+	background-color: var(--bn-color);
+
+	color: var(--bn-txt-color);
+}
+
+
+
+@media screen and (max-width: 900px) {
+	.field-order_by {
+		font-size: 1rem;
+	}
+}
+
+@media screen and (max-width: 800px) {
+	.two-fields {
+		grid-template-columns: 1fr;
+	}
+	.field-order_by {
+		font-size: .9rem;
+	}
+}
+
+@media screen and (max-width: 720px) {
+	.field-order_by {
+		font-size: .85rem;
+	}
+}
+
+@media screen and (max-width: 560px) {
+	.field-order_by {
+		font-size: .8rem;
+	}
+}

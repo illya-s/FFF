@@ -1,0 +1,143 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'mSelect/index.css' %}">
+<script src="{% static 'mSelect/index.js' %}"></script>
+
+<link rel="stylesheet" href="{% static 'css/video/filter.css' %}">
+
+<div class="filters">
+	<label class="toggle-filters-btn">
+		<h2>Фильтры</h2>
+		<input class="toggle-filters-checkbox" type="checkbox" name="" id="">
+		<svg width="513" height="513" viewBox="0 0 513 513" fill="none" xmlns="http://www.w3.org/2000/svg">
+			<path d="M448.5 152.5L256.5 360.5L64.5 152.5" stroke="currentColor" stroke-width="50" stroke-linecap="round"></path>
+		</svg>
+	</label>
+
+	<!-- <select class="chapter-select" name="" id="">
+		<option value="-1">Все разделы</option>
+		<option value="movie">Фильмы</option>
+		<option value="series">Сериалы</option>
+	</select> -->
+
+
+	<div class="filters-cont">
+		<!-- <select name="" id="" class="chapter-select">
+			{% for chapter in filters.chapters %}
+			<option value="{{ chapter.name }}" {% if chapter.selected %}data-checked=""{% endif %}>{{ chapter.val }}</option>
+			{% endfor %}
+		</select> -->
+
+		<div class="two-fields">
+			<div class="filters-block filter-year">
+				<h2>По годам:</h2>
+				<div class="year-select">
+					{% for year in filters.years %}
+					<div
+						class="option"
+						data-value="{{ year.year }}"
+						{% if year.checked %}
+						data-checked=""
+						{% endif %}
+					>
+						{{ year.year }}
+					</div>
+					{% endfor %}
+				</div>
+			</div>
+	
+			<div class="filters-block filter-country">
+				<h2>По странам:</h2>
+				<div class="countries-select">
+					{% for country in filters.countries %}
+					<div
+						class="option"
+						data-value="{{ country.id }}"
+						{% if country.checked %}
+						data-checked=""
+						{% endif %}
+					>
+						{{ country.name }}
+					</div>
+					{% endfor %}
+				</div>
+			</div>
+		</div>
+	
+		<div class="two-fields">
+			<div class="filters-block filter-genre">
+				<h2>Подобрать жанры:</h2>
+				<div class="genres-select">
+					{% for genre in filters.genres %}
+					<div
+						class="option"
+						data-value="{{ genre.id }}"
+						{% if genre.checked %}
+						data-checked=""
+						{% endif %}
+					>
+						{{ genre.name }}
+					</div>
+					{% endfor %}
+				</div>
+			</div>
+		
+			<div class="filters-block filter-exclude-genre">
+				<h2>Исключить жанры:</h2>
+				<div class="genres-exclude-select">
+					{% for genre in filters.exclude_genres %}
+					<div
+						class="option"
+						data-value="{{ genre.id }}"
+						{% if genre.checked %}
+						data-checked=""
+						{% endif %}
+					>
+						{{ genre.name }}
+					</div>
+					{% endfor %}
+				</div>
+			</div>
+		</div>
+	
+		{% comment %}<div class="filters-block actor-exclude">
+			<h2>С участием:</h2>
+			<div class="actors-select">
+				{% for actor in filters.actors %}
+				<div
+					class="option"
+					data-value="{{ actor.id }}"
+					{% if actor.checked %}
+					data-checked=""
+					{% endif %}
+				>
+					{{ actor.name }}
+				</div>
+				{% endfor %}
+			</div>
+		</div>{% endcomment %}
+
+		<button class="load-filters" id="loadFilters">Применить</button>
+	</div>
+
+	<div class="fields-order_by">
+		<label class="field-order_by">
+			<input class="fields-order_by-input fields-order_by-grade" type="radio" name="order_by" data-value="grade" id="" {% if filters.order_by == "grade" %}checked{% endif %}>
+			Лучшие
+		</label>
+		<label class="field-order_by">
+			<input class="fields-order_by-input fields-order_by-release_date" type="radio" name="order_by" data-value="release_date" id="" {% if filters.order_by == "release_date" %}checked{% endif %}>
+			Обновления
+		</label>
+		<label class="field-order_by">
+			<input class="fields-order_by-input fields-order_by-views" type="radio" name="order_by" data-value="views" id="" {% if filters.order_by == "views" %}checked{% endif %}>
+			Популярные
+		</label>
+		<label class="field-order_by">
+			<input class="fields-order_by-input fields-order_by-announce" type="radio" name="order_by" data-value="announce" id="" {% if filters.order_by == "announce" %}checked{% endif %}>
+			Новинки
+		</label>
+	</div>
+</div>
+
+
+<script src="{% static 'js/filter/filters.js' %}"></script>

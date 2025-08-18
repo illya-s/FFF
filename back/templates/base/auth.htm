@@ -1,0 +1,35 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<meta name="page_name" content="{{ page }}">
+
+	<link rel="stylesheet" href="{% static 'css/reset.css' %}">
+	<link rel="stylesheet" href="{% static 'css/colors.css' %}">
+
+	{% include 'base/head_icons.htm' %}
+
+	<link rel="stylesheet" href="{% static 'css/base/auth.css' %}">
+	<link rel="stylesheet" href="{% static 'css/user/form.css' %}">
+	{% block style %}
+	{% endblock %}
+
+	<title>{{ page_name }}</title>
+	<meta name="description" content="{{ page_description }}">
+	<meta name="keywords" content="{{ page_keywords }}">
+</head>
+<body>
+	<script src="{% static 'js/jquery-3.7.1.min.js' %}"></script>
+	<main>
+		{% block content %}
+		{% endblock %}
+	</main>
+
+	{% block script %}
+	{% endblock %}
+</body>
+</html>

@@ -1,0 +1,14 @@
+{% load allauth socialaccount %}
+{% load static %}
+{% get_providers as socialaccount_providers %}
+{% if socialaccount_providers %}
+    <div class="social-login-list">
+        {% for provider in socialaccount_providers %}
+            {% provider_login_url provider process=process as href %}
+            <a href="{{ href }}" class="social-login-btn social-login-{{ provider.id }}">
+                <img src="{% static 'img/social/'|add:provider.id|add:'.svg' %}" alt="{{ provider.name }} logo" class="social-icon" />
+                Войти с помощью {{ provider.name }}
+            </a>
+        {% endfor %}
+    </div>
+{% endif %}

@@ -1,0 +1,33 @@
+{% extends "base/statify.htm" %}
+{% load static %}
+
+{% block style %}
+<link rel="stylesheet" href="{% static 'css/statify/errors.css' %}">
+{% endblock %}
+
+{% block content %}
+<section class="content">
+	<h1>Детали ошибки</h1>
+
+	<ul>
+		<li><strong>Время:</strong> {{ error.timestamp }}</li>
+		<li><strong>Тип ошибки:</strong> {{ error.error_type }}</li>
+		<li><strong>ID медиа:</strong> {{ error.media_id }}</li>
+		<li><strong>Название:</strong> {{ error.title }}</li>
+		<li><strong>Сообщение:</strong><br><pre>{{ error.message }}</pre></li>
+		<li><strong>Сырые данные:</strong><br>
+			{% if error.raw_data %}
+				<pre>{{ error.raw_data|json_script:"rawData" }}</pre>
+				<script>
+					const rawData = JSON.parse(document.getElementById("rawData").textContent);
+					console.log(rawData);
+				</script>
+			{% else %}
+				<p>Нет данных</p>
+			{% endif %}
+		</li>
+	</ul>
+
+	<a href="{% url 'media_import_errors_list' %}">← Назад к списку</a>
+</section>
+{% endblock %}

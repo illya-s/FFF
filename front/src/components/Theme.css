@@ -1,0 +1,83 @@
+:root {
+    --lr-d-image: url('../imgs/bg2.png');
+    --lr-l-image: url('../imgs/bg4.png');
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --primary-color: hsl(217, 100%, 79%);
+        --primary-active-color: hsl(217, 100%, 87%);
+        --primary-text-color: hsl(213 78% 1%);
+
+        --bg-color: hsl(225 21% 1%);
+
+        --hf-color: hsl(223 13% 9%);
+        --bl1-color: var(--hf-color);
+        --bl2-color: hsl(223 7% 15%);
+        --bl3-color: hsl(223, 7%, 25%);
+
+        --tit-color: hsl(223, 44%, 96%);
+        --txt-color: hsl(223 6% 70%);
+
+        --hf-txt-color: var(--tit-color);
+        --bl3-txt-color: hsl(223 17% 9%);
+
+        --highlight: hsl(223 4% 40%);
+        --br-color: hsl(223 5% 15%);
+        --border-muted: hsl(223 8% 19%);
+
+        --bn-color:  var(--primary-color);
+        --bn-active-color: var(--primary-active-color);
+        --bn-txt-color: var(--primary-text-color);
+
+        --danger-color:         hsl(4, 100%, 79%);
+        --danger-active-color:  hsl(9, 100%, 87%);
+        --warning-color:        hsl(52, 100%, 79%);
+        --warning-active-color: hsl(52, 100%, 87%);
+        --success-color:        hsl(146, 100%, 79%);
+        --success-active-color: hsl(146, 100%, 87%);
+        --info-color:           var(--primary-color);
+        --info-active-color:    var(--primary-active-color);
+
+        --lr-image: var(--lr-d-image);
+    }
+}
+@media (prefers-color-scheme: light) {
+    :root {
+        --primary-color: hsl(217, 100%, 65%);
+        --primary-active-color: hsl(217, 100%, 80%);
+        --primary-text-color: hsl(213 78% 1%);
+
+        --bg-color: hsl(225 21% 88%);
+
+        --hf-color: hsl(223 13% 95%);
+        --bl1-color: var(--hf-color);
+        --bl2-color: hsl(223 7% 100%);
+        --bl3-color: var(--bl2-color);
+
+        --tit-color: hsl(0 0% 0%);
+        --txt-color: hsl(223 6% 25%);
+
+        --hf-txt-color: var(--tit-color);
+        --bl3-txt-color: hsl(223 17% 9%);
+
+        --highlight: hsl(223 4% 40%);
+        --br-color: hsl(223 5% 85%);
+        --border-muted: hsl(223 8% 19%);
+
+        --bn-color:  var(--primary-color);
+        --bn-active-color: var(--primary-active-color);
+        --bn-txt-color: var(--primary-text-color);
+
+        --danger-color:         hsl(4, 100%, 65%);
+        --danger-active-color:  hsl(9, 100%, 80%);
+        --warning-color:        hsl(52, 100%, 65%);
+        --warning-active-color: hsl(52, 100%, 80%);
+        --success-color:        hsl(146, 100%, 65%);
+        --success-active-color: hsl(146, 100%, 80%);
+        --info-color:           var(--primary-color);
+        --info-active-color:    var(--primary-active-color);
+
+        --lr-image: var(--lr-l-image);
+    }
+}

@@ -1,0 +1,45 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/pagination.css' %}">
+
+{% if page.paginator.num_pages > 1 %}
+	{% if page.has_previous %}
+		<button class="page-link" data-page="{{ page.previous_page_number }}">
+			<svg width="271" height="434" viewBox="0 0 271 434" fill="none" xmlns="http://www.w3.org/2000/svg">
+				<path d="M245.5 409L37.5 217L245.5 25" stroke="currentColor" stroke-width="50" stroke-linecap="round"/>
+			</svg>
+		</button>
+	{% else %}
+		<span class="page-link-not-active">
+			<svg width="271" height="434" viewBox="0 0 271 434" fill="none" xmlns="http://www.w3.org/2000/svg">
+				<path d="M245.5 409L37.5 217L245.5 25" stroke="currentColor" stroke-width="50" stroke-linecap="round"/>
+			</svg>
+		</span>
+	{% endif %}
+	<div class="page-links">
+		{% for num in page.paginator.page_range %}
+			{% if num == page.number %}
+				<span class="page-number active" data-val="{{ num }}">{{ num }}</span>
+			{% elif num >= page.number|add:'-2' and num <= page.number|add:'2' %}
+				<button class="page-link" data-page="{{ num }}">{{ num }}</button>
+			{% elif num == 1 or num == page.paginator.num_pages %}
+				<button class="page-link" data-page="{{ num }}">{{ num }}</button>
+			{% elif num == page.number|add:'-3' or num == page.number|add:'3' %}
+				<span class="page-dots">...</span>
+			{% endif %}
+		{% endfor %}
+	</div>
+	<!-- <span class="current">{{ page.number }} / {{ page.paginator.num_pages }}</span> -->
+	{% if page.has_next %}
+		<button class="page-link" data-page="{{ page.next_page_number }}">
+			<svg width="271" height="434" viewBox="0 0 271 434" fill="none" xmlns="http://www.w3.org/2000/svg">
+				<path d="M25.5 25L233.5 217L25.5 409" stroke="currentColor" stroke-width="50" stroke-linecap="round"/>
+			</svg>
+		</button>
+	{% else %}
+		<span class="page-link-not-active">
+			<svg width="271" height="434" viewBox="0 0 271 434" fill="none" xmlns="http://www.w3.org/2000/svg">
+				<path d="M25.5 25L233.5 217L25.5 409" stroke="currentColor" stroke-width="50" stroke-linecap="round"/>
+			</svg>
+		</span>
+	{% endif %}
+{% endif %}

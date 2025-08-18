@@ -1,0 +1,38 @@
+{% extends 'home/base.html' %}
+{% load static %}
+
+
+{% block style %}
+<link rel="stylesheet" href="{% static 'css/slider/slick.css' %}">
+<link rel="stylesheet" href="{% static 'css/slider/slick-theme.css' %}">
+
+<link rel="stylesheet" href="{% static 'css/pagination.css' %}">
+
+<link rel="stylesheet" href="{% static 'css/collections/list.css' %}">
+<link rel="stylesheet" href="{% static 'css/collections/index.css' %}">
+{% endblock %}
+
+{% block content %}
+<section class="collection-list">
+	<div class="list">
+		{% for collection in collections %}
+		<a href="{% url 'collect' collection.hash %}" class="collection-block">
+			<div class="collection-poster">
+				<img class="collection-poster-img" src="{{ collection.poster }}" alt="">
+			</div>
+
+			<span class="collection-name">{{ collection.name }}</span>
+		</a>
+		{% endfor %}
+	</div>
+	<div class="pagi">
+		{% include 'pagination.html' %}
+	</div>
+</section>
+{% endblock %}
+
+{% block script %}
+<script src="{% static 'js/slick.min.js' %}"></script>
+<script src="{% static 'js/home/index.js' %}"></script>
+<script src="{% static 'js/load.js' %}"></script>
+{% endblock %}

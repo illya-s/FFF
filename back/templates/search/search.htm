@@ -1,0 +1,42 @@
+{% extends 'base/base.htm' %}
+{% load static %}
+
+
+{% block style %}
+<link rel="stylesheet" href="{% static 'css/home/index.css' %}">
+<link rel="stylesheet" href="{% static 'css/video/list.css' %}">
+
+<link rel="stylesheet" href="{% static 'css/search/index.css' %}">
+
+{% with request.GET.dict as params %}
+    {% if 'q' in params %}
+        <link rel="canonical" href="{{ request.path }}?q={{ params.q }}">
+    {% else %}
+        <meta name="robots" content="noindex">
+    {% endif %}
+{% endwith %}
+
+{% endblock %}
+
+{% block content %}
+<section class="content">
+	<section class="media-list main-block">
+		<div class="current-search">
+			<span>Результаты поиска по запросу:</span>
+			<h1>{{ query }}</h1>
+		</div>
+		{% if message %}
+		<div class="search-message">{{ message }}</div>
+		{% endif %}
+		<div class="list">{{ list }}</div>
+		<div id="loader" style="align-self: center; width: 75px; padding: 1rem; display:none;">
+			<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><circle fill="#84B5F0" stroke="#84B5F0" stroke-width="28" r="15" cx="40" cy="65"><animate attributeName="cy" calcMode="spline" dur="1" values="65;135;65;" keySplines=".5 0 .5 1;.5 0 .5 1" repeatCount="indefinite" begin="-.4"></animate></circle><circle fill="#84B5F0" stroke="#84B5F0" stroke-width="28" r="15" cx="100" cy="65"><animate attributeName="cy" calcMode="spline" dur="1" values="65;135;65;" keySplines=".5 0 .5 1;.5 0 .5 1" repeatCount="indefinite" begin="-.2"></animate></circle><circle fill="#84B5F0" stroke="#84B5F0" stroke-width="28" r="15" cx="160" cy="65"><animate attributeName="cy" calcMode="spline" dur="1" values="65;135;65;" keySplines=".5 0 .5 1;.5 0 .5 1" repeatCount="indefinite" begin="0"></animate></circle></svg>
+		</div>
+	</section>
+</section>
+{% endblock %}
+
+{% block script %}
+<script src="{% static 'js/slick.min.js' %}"></script>
+<script src="{% static 'js/load.js' %}"></script>
+{% endblock %}

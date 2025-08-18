@@ -1,0 +1,8 @@
+.content {
+	overflow-y: auto;
+
+	display: grid;
+	grid-template-columns: 100%;
+	grid-template-rows: repeat(4, max-content);
+	gap: 1rem;
+}

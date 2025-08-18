@@ -1,0 +1,25 @@
+{% extends 'base/base.htm' %}
+{% load static %}
+
+{% block style %}
+<link rel="stylesheet" href="{% static 'css/social/index.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="content">
+        <div class="main-block list">
+            {% for s in socials %}
+                <div class="list-block" data-order="{{ s.order }}">
+                    <a href="{{ s.url }}" class="" title="{{ s.name }}" target="_blank">
+                        {{ s.icon_svg|safe }}
+
+                        <span>{{ s.name }}</span>
+                    </a>
+
+                    <input type="checkbox" {% if s.is_active %}checked{% endif %}>
+                </div>
+            {% endfor %}
+        </div>
+
+    </div>
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends 'base/base.htm' %}
+{% load static %}
+
+
+{% block style %}
+<link rel="stylesheet" href="{% static 'css/errors.css' %}">
+{% endblock %}
+
+{% block content %}
+	<section class="main-block">
+		<h1>429 - Слишком много запросов</h1>
+		<p>Пожалуйста, подождите {% if block_time %}{{ block_time }}{% else %}немного{% endif %} и попробуйте снова.</p>
+		<a href="/">Вернуться на главную</a>
+	</section>
+{% endblock %}

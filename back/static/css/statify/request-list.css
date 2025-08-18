@@ -1,0 +1,8 @@
+.request-list * {
+	color: var(--txt-color);
+}
+
+
+table {
+	width: 100%;
+}

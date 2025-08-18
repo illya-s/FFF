@@ -1,0 +1,21 @@
+.slick-dots {
+    z-index: 9 !important;
+}
+
+
+.media-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.media-list > h1 {
+    font-size: 1.2rem;
+    color: var(--tit-color);
+}
+
+.main-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 1rem;
+}

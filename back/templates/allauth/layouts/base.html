@@ -1,0 +1,108 @@
+{% load i18n %}
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link rel="icon" href="{% static 'favicon.ico' %}" type="image/x-icon">
+
+        <title>
+            {% block head_title %}
+            {% endblock head_title %}
+        </title>
+
+        <link rel="stylesheet" href="{% static 'css/reset.css' %}">
+        <link rel="stylesheet" href="{% static 'css/colors.css' %}">
+
+        <link rel="stylesheet" href="{% static 'css/base/auth.css' %}">
+        <link rel="stylesheet" href="{% static 'css/user/form.css' %}">
+
+        {% block extra_head %}
+        {% endblock extra_head %}
+    </head>
+    <body>
+        {% if messages %}
+        <div class="messages">
+            <h1>{% trans "Messages:" %}</h1>
+            <ul class="message-list">
+                {% for message in messages %}
+                    <li class="message">
+                        {{ message }}
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+
+        {% block body %}
+            <header class="header-links-wrapper">
+                <div class="header-logo">
+                    <a class="header-logo-desctop" href="{% url 'home' %}">
+                        SarangDorama
+                    </a>
+
+                    <button class="header-logo-mobile">
+                        <svg class="burger-menu" width="513" height="512" viewBox="0 0 513 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="56.5" y="94" width="400" height="67.0157" rx="33.5079" fill="white"/>
+                            <rect x="56.5" y="223" width="400" height="65.9686" rx="32.9843" fill="white"/>
+                            <rect x="56.5" y="351" width="400" height="67.0157" rx="33.5079" fill="white"/>
+                        </svg>
+
+                        <span>M-MovieHub</span>
+                    </button>
+                </div>
+
+                <div class="header-links">
+                    {% if user.is_authenticated %}
+                        {% url 'account_email' as email_url_ %}
+                        {% if email_url_ %}
+                            <a href="{{ email_url_ }}" class="header-link">{% trans "Change Email" %}</a>
+                        {% endif %}
+                        {% url 'account_change_password' as change_password_url_ %}
+                        {% if change_password_url_ %}
+                            <a href="{{ change_password_url_ }}" class="header-link">{% trans "Change Password" %}</a>
+                        {% endif %}
+                        {% url 'socialaccount_connections' as connections_url_ %}
+                        {% if connections_url_ %}
+                            <a href="{{ connections_url_ }}" class="header-link">{% trans "Account Connections" %}</a>
+                        {% endif %}
+                        {% url 'mfa_index' as mfa_url_ %}
+                        {% if mfa_url_ %}
+                            <a href="{{ mfa_url_ }}" class="header-link">{% trans "Two-Factor Authentication" %}</a>
+                        {% endif %}
+                        {% url 'usersessions_list' as usersessions_list_url_ %}
+                        {% if usersessions_list_url_ %}
+                            <a href="{{ usersessions_list_url_ }}" class="header-link">{% trans "Sessions" %}</a>
+                        {% endif %}
+                        {% url 'account_logout' as logout_url_ %}
+                        {% if logout_url_ %}
+                            <a href="{{ logout_url_ }}" class="header-link">{% trans "Sign Out" %}</a>
+                        {% endif %}
+                    {% endif %}
+                </div>
+            </header>
+            {% if messages %}
+                <div class="messages">
+                    <h1>{% trans "Messages:" %}</h1>
+                    <ul class="message-list">
+                        {% for message in messages %}
+                            <li class="message">
+                                {{ message }}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
+
+            <main>
+                {% block content %}
+                {% endblock content %}
+            </main>
+        {% endblock body %}
+        {% block extra_body %}
+        {% endblock extra_body %}
+    </body>
+</html>

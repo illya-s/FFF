@@ -1,0 +1,54 @@
+{% extends "base/auth.htm" %}
+{% load static %}
+
+
+{% block style %}
+<link rel="stylesheet" href="{% static 'css/user/login.css' %}">
+{% endblock %}
+
+{% block content %}
+<section>
+    <div class="buttons">
+        <a href="{% url 'login' %}">Вход</a>
+        <p>Регистрация</p>
+    </div>
+
+    {% if not SOCIALACCOUNT_ONLY %}
+        <form method="post">
+            {% csrf_token %}
+
+            <div class="email">
+                <p>{{ form.email.label }}</p>
+                {{ form.email }}
+            </div>
+
+            <div class="username">
+                <p>{{ form.username.label }}</p>
+                {{ form.username }}
+            </div>
+
+            <div class="password">
+                <p>{{ form.password1.label }}</p>
+                {{ form.password1 }}
+            </div>
+
+            <ul>
+                <li>Ваш пароль должен содержать как минимум 8 символов.</li>
+                <li>Пароль не должен быть слишком простым и распространенным.</li>
+                <li>Пароль не может состоять только из цифр.</li>
+            </ul>
+
+            <div class="form-check">
+                {{ form.agree_to_terms }} {{ form.agree_to_terms.label_tag }}
+                {{ form.agree_to_terms.errors }}
+            </div>
+
+            <button type="submit">Зарегистрируйтесь</button>
+        </form>
+    {% endif %}
+
+    {% if SOCIALACCOUNT_ENABLED %}
+        {% include "socialaccount/snippets/login.html" with page_layout="entrance" %}
+    {% endif %}
+</section>
+{% endblock %}

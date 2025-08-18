@@ -1,0 +1,17 @@
+{% extends 'base/base.htm' %}
+{% load static %}
+
+
+{% block style %}
+<link rel="stylesheet" href="{% static 'css/errors.css' %}">
+{% endblock %}
+
+{% block content %}
+	<section class="main-block">
+		<h1>Ошибка 404 — Страница не найдена</h1>
+		<p>Извините, страница, которую вы ищете, не существует или была удалена.</p>
+		<p>Проверьте адрес или вернитесь на главную страницу.</p>
+		<p>Если вы думаете, что это ошибка, <a href="{% url 'support' %}">напишите в поддержку</a>.</p>
+		<a href="/">Вернуться на главную</a>
+	</section>
+{% endblock %}

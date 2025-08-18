@@ -1,0 +1,51 @@
+{% extends "base/auth.htm" %}
+{% load static %}
+
+
+{% block style %}
+<link rel="stylesheet" href="{% static 'css/user/login.css' %}">
+{% endblock %}
+
+{% block content %}
+<section class="content main-block">
+	<section class="lr-form-wrapper">
+		<div class="lr-form-top">
+			<img class="lr-form-top-logo" src="{% static 'icons/favicon.png' %}" alt="">
+			<h1 class="lr-form-top-title">Добро пожаловать</h1>
+		</div>
+
+		<form class="lr-form" method="post">
+			{% csrf_token %}
+
+			<div class="lr-form-cont">
+				<div class="lr-form-email-wrapper lr-form-line">
+					<h4 class="lr-form-line-name">Email</h4>
+					<input class="email" type="email" name="email" placeholder="Ваш email" required>
+				</div>
+
+				<button class="lr-form-submit" type="submit">Продолжить</button>
+			</div>
+
+			{% if providers %}
+			<div class="socialaccount-hr">
+				<hr><h2>или</h2><hr>
+			</div>
+
+			<div class="social-login-list">
+				<a href="{{ providers.0.login_url }}" class="social-login-btn social-login-{{ providers.0.id }}">
+					<svg class="social-icon" width="513" height="512" viewBox="0 0 513 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<path d="M261.725 0C159.609 0 71.5056 57.4837 28.5223 141.265C10.7115 175.709 0.5 214.575 0.5 256C0.5 297.425 10.7115 336.291 28.5223 370.735V370.967C71.5056 454.516 159.609 512 261.725 512C332.255 512 391.387 489.193 434.608 450.095C484.003 405.411 512.5 339.782 512.5 261.818C512.5 243.665 510.838 226.211 507.75 209.455H261.725V308.596H402.311C396.136 340.48 377.613 367.476 349.828 385.629C326.556 400.989 296.871 410.298 261.725 410.298C193.806 410.298 136.099 365.382 115.439 304.873H115.129L115.439 304.64C110.214 289.28 107.127 272.989 107.127 256C107.127 239.011 110.214 222.72 115.439 207.36C136.099 146.851 193.806 101.935 261.725 101.935C300.196 101.935 334.392 114.967 361.702 140.102L436.507 66.7927C391.149 25.3673 332.255 0 261.725 0Z" fill="currentColor"/>
+					</svg>
+
+					Войти с помощью {{ providers.0.name }}
+				</a>
+			</div>
+			{% endif %}
+		</form>
+	</section>
+
+	<div class="side-image">
+		<img src="{% static 'img/auth/bg.png' %}" alt="">
+	</div>
+</section>
+{% endblock %}

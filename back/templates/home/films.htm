@@ -1,0 +1,45 @@
+{% extends 'home/base.html' %}
+{% load static %}
+
+
+{% block style %}
+<link rel="stylesheet" href="{% static 'css/home/index.css' %}">
+{% endblock %}
+
+{% block content %}
+<section class="content">
+	{% if top_genres %}
+	<section class="top-genres"> <!-- owl-carousel -->
+		<div class="top-genres-cont owl-carousel">
+			{% for genre in top_genres %}
+			<a href="{% url 'home' %}?gs={{ genre.id }}" class="top-genre">
+				{{ genre.name }}
+			</a>
+			{% endfor %}
+		</div>
+	</section>
+	{% endif %}
+
+	<section class="media-premieres-slider main-block">
+		<span>Топ недели</span>
+	
+		<div class="media-carousel owl-carousel">
+			{{ top_media }}
+		</div>
+	</section>
+
+	<section class="media-list main-block">
+		{% include 'home/filters.htm' %}
+		<div class="list">{{ list }}</div>
+		<div id="loader" style="align-self: center; width: 75px; padding: 1rem; display:none;">
+			<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><circle fill="#84B5F0" stroke="#84B5F0" stroke-width="28" r="15" cx="40" cy="65"><animate attributeName="cy" calcMode="spline" dur="1" values="65;135;65;" keySplines=".5 0 .5 1;.5 0 .5 1" repeatCount="indefinite" begin="-.4"></animate></circle><circle fill="#84B5F0" stroke="#84B5F0" stroke-width="28" r="15" cx="100" cy="65"><animate attributeName="cy" calcMode="spline" dur="1" values="65;135;65;" keySplines=".5 0 .5 1;.5 0 .5 1" repeatCount="indefinite" begin="-.2"></animate></circle><circle fill="#84B5F0" stroke="#84B5F0" stroke-width="28" r="15" cx="160" cy="65"><animate attributeName="cy" calcMode="spline" dur="1" values="65;135;65;" keySplines=".5 0 .5 1;.5 0 .5 1" repeatCount="indefinite" begin="0"></animate></circle></svg>
+		</div>
+	</section>
+</section>
+{% endblock %}
+
+{% block script %}
+<script src="{% static 'js/slick.min.js' %}"></script>
+<script src="{% static 'js/home/index.js' %}"></script>
+<script src="{% static 'js/load.js' %}"></script>
+{% endblock %}

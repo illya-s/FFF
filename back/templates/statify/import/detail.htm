@@ -1,0 +1,64 @@
+{% extends "base/statify.htm" %}
+{% load static %}
+
+{% block style %}
+<link rel="stylesheet" href="{% static 'css/statify/log-datail.css' %}">
+{% endblock %}
+
+{% block content %}
+<section class="content">
+	<div class="log-title main-block">
+		<a href="{% url 'import_list' %}">
+			<svg width="513" height="512" viewBox="0 0 513 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+				<path d="M360.5 448L152.5 256L360.5 64" stroke="currentColor" stroke-width="50" stroke-linecap="round"/>
+			</svg>
+		</a>
+		<h1>Детали ошибки</h1>
+	</div>
+
+	<div class="log-info main-block">
+		<table>
+			<tr>
+				<td>
+					<strong>Время:</strong>
+				</td>
+				<td>{{ log.timestamp }}</td>
+			</tr>
+			<tr>
+				<td>
+					<strong>загружено:</strong>
+				</td>
+				<td>
+					{% if log.is_load_all %}всё
+					{% else %}{{ log.loaded_count }}/{{ log.total_count }}
+					{% endif %}
+				</td>
+			</tr>
+		</table>
+	</div>
+
+	<div class="entrys-list main-block">
+		<div class="entry-head">
+			<span>Тип</span>
+			<span>Media</span>
+		</div>
+
+		{% for entry in errors %}
+		<div class="entry-block">
+			<span>{{ entry.action }}</span>
+
+			{% if entry.media %}
+			<a href="{% url 'media' entry.media.hash %}"></a>
+			{% else %}
+			<span>отсутствует</span>
+			{% endif %}
+
+			<details class="entry-message">
+				<summary>Сообщение:</summary>
+				<pre class="entry-message-text">{{ entry.message }}</pre>
+			</details>
+		</div>
+		{% endfor %}
+	</div>
+</section>
+{% endblock %}

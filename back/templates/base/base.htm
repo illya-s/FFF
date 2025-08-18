@@ -1,0 +1,88 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<meta name="page_name" content="{{ page }}">
+
+	<link rel="stylesheet" href="{% static 'css/reset.css' %}">
+	<link rel="stylesheet" href="{% static 'css/colors.css' %}">
+
+	{% include 'base/head_icons.htm' %}
+
+	<link rel="stylesheet" href="{% static 'css/base/base.css' %}">
+	<link rel="stylesheet" href="{% static 'css/base/header.css' %}">
+	<link rel="stylesheet" href="{% static 'css/base/aside.css' %}">
+	<link rel="stylesheet" href="{% static 'css/base/footer.css' %}">
+	<script src="{% static 'js/jquery-3.7.1.min.js' %}"></script>
+
+	<link rel="stylesheet" href="{% static 'slick/slick.css' %}">
+	<link rel="stylesheet" href="{% static 'slick/slick-theme.css' %}">
+	<script src="{% static 'slick/slick.min.js' %}"></script>
+
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"/>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css"/>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+
+	<link rel="stylesheet" href="{% static 'css/video/list.css' %}">
+
+	<link rel="stylesheet" href="{% static 'css/base/alert.css' %}">
+
+	<title>{{ page_name }}</title>
+	<meta name="description" content="{{ page_description }}">
+	<meta name="keywords" content="{{ page_keywords }}">
+
+	<meta property="og:title" content="{{ page_name }}">
+	<meta property="og:description" content="{{ page_description }}">
+
+	{% comment %}
+	<!-- <meta property="og:image" content="https://example.com/image.jpg"> -->
+	<!-- <meta name="twitter:card" content="summary_large_image"> -->
+	{% endcomment %}
+
+	{% if canonical_url %}
+	<link rel="canonical" href="{{ canonical_url }}">
+	<meta property="og:url" content="{{ canonical_url }}">
+	{% endif %}
+
+	{% block style %}{% endblock style %}
+	{% block extra_css %}{% endblock extra_css %}
+</head>
+<body>
+	{% include 'base/header.htm' %}
+
+	<main>
+		{% include 'base/aside.htm' %}
+
+		{% block content %}
+		{% endblock %}
+	</main>
+
+	{% if messages %}
+	<div id="message-container">
+		{% for message in messages %}
+		<div class="alert {{ message.tags }}">{{ message }}</div>
+		{% endfor %}
+	</div>
+	<script src="{% static 'js/base/alert.js' %}"></script>
+	{% endif %}
+
+	<div class="confirm-popup-wraper" id="confirmPopupWraper">
+		<div class="confirm-wraper">
+			<div class="confirm-message" id="confirmMessage"></div>
+			<div class="confirmation-btns">
+				<button class="confirm-ok" id="confirmOk">ОК</button>
+				<button class="confirm-no" id="confirmNo">Отмена</button>
+			</div>
+		</div>
+	</div>
+
+	<script src="{% static 'js/base/base.js' %}"></script>
+	{% block script %}
+	{% endblock %}
+</body>
+</html>

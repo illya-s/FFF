@@ -1,0 +1,17 @@
+{% extends 'base/base.htm' %}
+{% load static %}
+
+
+{% block style %}
+<link rel="stylesheet" href="{% static 'css/errors.css' %}">
+{% endblock %}
+
+{% block content %}
+	<section class="main-block">
+		<h1>Ошибка 500 — Внутренняя ошибка сервера</h1>
+		<p>Произошла ошибка на сервере. Мы уже работаем над её устранением.</p>
+		<p>Пожалуйста, попробуйте зайти позже.</p>
+		<p>Если проблема сохраняется, пожалуйста, <a href="{% url 'support' %}">напишите в поддержку</a>.</p>
+		<a href="/">Вернуться на главную</a>
+	</section>
+{% endblock %}

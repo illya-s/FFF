@@ -1,0 +1,43 @@
+{% extends "account/base_manage_email.html" %}
+{% load i18n %}
+{% load allauth %}
+{% load static %}
+
+{% block head_title %}
+    {% trans "Email Address" %}
+{% endblock head_title %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'css/user/login.css' %}">
+{% endblock %}
+
+{% block content %}
+<section>
+    <h1>Смена почты</h1>
+
+    <form action="{% url 'account_email' %}" method="post">
+        {% csrf_token %}
+
+        <div class="email">
+            <p>{{ form.new_email.label }}</p>
+            {{ form.new_email }}
+        </div>
+
+        <button type="submit">Сменить</button>
+    </form>
+
+    {% if SOCIALACCOUNT_ENABLED %}
+        {% include "socialaccount/snippets/login.html" with page_layout="entrance" %}
+    {% endif %}
+
+    {% if new_emailaddress %}
+        <form style="display: none"
+              id="pending-email"
+              method="post"
+              action="{% url 'account_email' %}">
+            {% csrf_token %}
+            <input type="hidden" name="email" value="{{ new_emailaddress.email }}">
+        </form>
+    {% endif %}
+</section>
+{% endblock content %}

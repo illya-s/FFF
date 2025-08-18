@@ -1,0 +1,14 @@
+main {
+	width: clamp(0px, 100%, 100vw);
+
+	display: grid;
+	grid-template-columns: 1fr;
+	gap: var(--main-gap);
+}
+
+
+section {
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+}

@@ -1,0 +1,186 @@
+{% extends "base/statify.htm" %}
+{% load static %}
+
+
+{% block style %}
+<link rel="stylesheet" href="{% static 'css/statify/index.css' %}">
+{% endblock %}
+
+{% block content %}
+<section class="content">
+	<div class="time-info main-block">
+		<strong>Load:</strong> <span id="countdown" data-sec="{{ remaining_seconds }}">{{ remaining_time }}</span>
+		<strong>Load time:</strong> <span>{{ next_time }}</span>
+	</div>
+
+	<div class="main-block visit-chart-wrapper">
+		<select name="" id="visitChartSelect">
+			<option value="day">День</option>
+			<option value="month">Месяц</option>
+		</select>
+
+		<div>
+			<canvas id="visitsChart" height="200"></canvas>
+		</div>
+	</div>
+	<div class="chart-wrapper main-block">
+		<canvas id="mediaViewsChart" height="200"></canvas>
+	</div>
+</section>
+{% endblock %}
+
+{% block script %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script src="{% static 'js/statify/index.js' %}"></script>
+
+<script>
+	$(function () {
+		const visitCtx = document.getElementById('visitsChart').getContext('2d');
+		let visitChart;
+
+		function updateLogs(day='day') {
+			$.getJSON("{% url 'logs_by_month' %}", { period: day }, function (data) {
+				const labels = data.logs.map(item => item.n);
+				const logs = data.logs.map(item => item.count);
+				const views = data.views.map(item => item.count);
+				const home = data.home.map(item => item.count);
+				const search = data.search.map(item => item.count);
+				const films = data.films.map(item => item.count);
+				const series = data.series.map(item => item.count);
+
+				if (!visitChart) {
+					visitChart = new Chart(visitCtx, {
+						type: 'line',
+						data: {
+							labels: labels,
+							datasets: [
+								{
+									label: 'Visits',
+									data: logs,
+									backgroundColor: '#90CEA555',
+									borderColor: '#00A637',
+									borderWidth: 2,
+									tension: 0.3,
+									pointRadius: 3,
+									fill: true
+								}, {
+									label: 'Media',
+									data: views,
+									backgroundColor: '#83B5E755',
+									borderColor: '#318CE7',
+									borderWidth: 2,
+									tension: 0.3,
+									pointRadius: 3,
+									fill: true
+								}, {
+									label: 'Home',
+									data: home,
+									backgroundColor: '#B691EB55',
+									borderColor: '#9457EB',
+									borderWidth: 2,
+									tension: 0.3,
+									pointRadius: 3,
+									fill: true
+								}, {
+									label: 'Search',
+									data: search,
+									backgroundColor: '#F09D6955',
+									borderColor: '#F07427',
+									borderWidth: 2,
+									tension: 0.3,
+									pointRadius: 3,
+									fill: true
+								}, {
+									label: 'Films',
+									data: films,
+									backgroundColor: '#81E1E155',
+									borderColor: '#006262',
+									borderWidth: 2,
+									tension: 0.3,
+									pointRadius: 3,
+									fill: true
+								}, {
+									label: 'Series',
+									data: series,
+									backgroundColor: '#F0EAD655',
+									borderColor: '#F0CA4B',
+									borderWidth: 2,
+									tension: 0.3,
+									pointRadius: 3,
+									fill: true
+								}
+							]
+						},
+						options: {
+							responsive: true,
+							maintainAspectRatio: false,
+							scales: {
+								y: {
+									beginAtZero: true,
+									ticks: {}
+								}
+							},
+							plugins: {
+								legend: {
+									display: true,
+									position: 'top'
+								}
+							}
+						}
+				});	
+				} else {
+					visitChart.data.datasets[0].data = logs;
+					visitChart.data.datasets[1].data = views;
+					visitChart.data.datasets[2].data = home;
+					visitChart.data.datasets[3].data = search;
+					visitChart.data.datasets[4].data = films;
+					visitChart.data.datasets[5].data = series;
+					visitChart.update();
+				}
+			});
+		}
+		updateLogs()
+		$('#visitChartSelect').on('change', function () {
+			updateLogs($(this).val())
+		});
+
+		$.getJSON("{% url 'media_views_by_month' %}", function (data) {
+			const labels = data.map(item => item.media_title);
+			const counts = data.map(item => item.count);
+
+			const ctx = document.getElementById('mediaViewsChart').getContext('2d');
+			new Chart(ctx, {
+				type: 'bar',
+				data: {
+					labels: labels,
+					datasets: [{
+						label: 'Количество просмотров',
+						data: counts,
+						backgroundColor: 'rgba(75, 192, 192, 0.6)',
+						borderColor: 'rgba(75, 192, 192, 1)',
+						borderWidth: 1,
+						borderRadius: 5
+					}]
+				},
+				options: {
+					responsive: true,
+					maintainAspectRatio: false,
+					plugins: {
+						legend: { display: false },
+						tooltip: { mode: 'index', intersect: false }
+					},
+					scales: {
+						y: {
+							beginAtZero: true,
+							ticks: {
+								stepSize: 1
+							}
+						}
+					}
+				}
+			});
+		});
+	});
+</script>
+{% endblock %}

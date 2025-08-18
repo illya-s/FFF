@@ -1,0 +1,17 @@
+{% extends 'base/base.htm' %}
+{% load static %}
+
+
+{% block style %}
+<link rel="stylesheet" href="{% static 'css/errors.css' %}">
+{% endblock %}
+
+{% block content %}
+	<section class="main-block">
+		<h1>Ошибка 400 — Неверный запрос</h1>
+		<p>Ваш запрос некорректен или сервер не может его обработать.</p>
+		<p>Пожалуйста, проверьте правильность введённых данных и попробуйте снова.</p>
+		<p>Если проблема повторяется, <a href="{% url 'support' %}">напишите в поддержку</a>.</p>
+		<a href="/">Вернуться на главную</a>
+	</section>
+{% endblock %}

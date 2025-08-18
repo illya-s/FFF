@@ -1,0 +1,52 @@
+.profile-wrapper {
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    gap: 2rem;
+}
+
+
+.profile-info-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: var(--main-gap);
+
+    color: var(--txt-color);
+}
+
+
+.profile-avatar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+.profile-top-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--tit-color);
+}
+
+
+.profile-logout {
+    width: 100%;
+    padding: 5px 10px;
+
+    border-radius: var(--border);
+    background-color: var(--danger-color);
+
+    color: var(--bn-txt-color);
+    text-align: center;
+}
+
+
+.sessions-top-wrapper {
+    display: grid;
+    grid-template-rows: max-content auto max-content;
+    gap: var(--main-gap);
+}
+.sessions-top-title {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: var(--tit-color);
+}

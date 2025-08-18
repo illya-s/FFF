@@ -1,0 +1,19 @@
+<div class="log log-head">
+	<span>Дата</span>
+	<span>Метод - статус</span>
+	<span>Путь</span>
+	<span>IP</span>
+	<span>CKEY</span>
+	<span>Пользователь</span>
+</div>
+
+{% for log in page_obj %}
+<a href="{% url 'visitlog_detail' log.pk  %}" class="log log-url">
+	<span>{{ log.timestamp }}</span>
+	<span>{{ log.method }} {{ log.status_code }}</span>
+	<span>{{ log.type }}</span>
+	<span>{{ log.ip }}</span>
+	<span>{{ log.country }}</span>
+	<span>{% if log.user %}{{ user.username }}{% else %}-{% endif %}</span>
+</a>
+{% endfor %}

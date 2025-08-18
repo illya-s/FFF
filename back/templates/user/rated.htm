@@ -1,0 +1,35 @@
+{% extends "base/base.htm" %}
+{% load static %}
+
+{% block style %}
+<meta name="robots" content="noindex, nofollow">
+
+<link rel="stylesheet" href="{% static 'css/user/rated.css' %}">
+{% endblock %}
+
+{% block content %}
+<section class="profile-wrapper">
+	<section class="profile-rated-wrapper main-block">
+		<h2 class="profile-title">Оценённые</h2>
+
+		<div class="profile-rated-list">
+			<div class="profile-rate">
+				<span>Название</span>
+				<span>Оценка</span>
+				<span>Дата</span>
+			</div>
+			{% for vote in video_votes %}
+			<div class="profile-rate">
+				<a class="profile-rate-link" href="{% url 'media' vote.media.hash %}">{{ vote.media.name }}</a>
+				<span>{{ vote.grade }}</span>
+				<span>{{ vote.created|date:"d M Y года" }}</span>
+			</div>
+			{% empty %}
+			<div class="profile-rate-empty">
+				Тут пока ничего нет
+			</div>
+			{% endfor %}
+		</div>
+	</section>
+</section>
+{% endblock %}

@@ -1,0 +1,33 @@
+input[type='text'], input[type='password'], input[type="email"], button[type='submit'] {
+	padding: 7px 15px;
+
+	border: none;
+	border-radius: 15px;
+	background-color: var(--bl2-color);
+
+	color: var(--txt-color);
+	font-size: 1.1rem;
+
+	&:focus {
+		outline: none;
+	}
+}
+
+button[type='submit'] {
+	background-color: var(--bn-color);
+
+	color: var(--bn-txt-color);
+
+	transition: opacity .2s linear;
+
+	&:hover {
+		opacity: .6;
+	}
+}
+
+
+@media screen and (max-width: 720px) {
+	input[type='text'], input[type='password'], input[type="email"], button[type='submit'] {
+		font-size: 1.1em;
+	}
+}

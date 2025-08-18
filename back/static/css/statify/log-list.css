@@ -1,0 +1,49 @@
+.log-list {
+	display: flex;
+	flex-direction: column;
+	gap: .5rem;
+}
+
+.log-head, .log-block {
+	padding: 10px 15px;
+
+	display: grid;
+	grid-template-columns: repeat(6, 1fr);
+	align-items: center;
+	gap: 1rem;
+
+	border-radius: 10px;
+}
+.log-head {
+	background-color: var(--bn-color);
+	color: var(--bn-txt-color);
+}
+.log-block {
+	background-color: var(--bl2-color);
+	color: var(--txt-color);
+	text-decoration: none;
+
+	transition: opacity .2s linear;
+
+	&:hover {
+		opacity: .6;
+	}
+}
+.log-head > * {
+	text-align: center;
+}
+
+.log-ratio {
+	display: grid;
+	grid-template-columns: 1fr auto 1fr;
+	align-items: center;
+}
+
+
+.paggination {
+	display: grid;
+	grid-template-rows: max-content max-content max-content;
+}
+.paggination-info {
+	justify-self: center;
+}

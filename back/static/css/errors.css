@@ -1,0 +1,33 @@
+main {
+	grid-template-columns: 1fr;
+}
+.aside {
+	display: none;
+}
+
+section {
+	padding: var(--padding);
+
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+	justify-content: center;
+	align-items: center;
+
+	border-radius: var(--border);
+	background-color: var(--bl1-color);
+}
+
+h1 {
+	font-size: 1.2rem;
+	color: var(--warning-color);
+}
+p {
+	font-size: 1rem;
+	color: var(--txt-color);
+}
+a {
+	font-size: 1rem;
+	font-style: italic;
+	color: var(--tit-color);
+}

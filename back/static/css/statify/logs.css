@@ -1,0 +1,35 @@
+.logs {
+	display: flex;
+	flex-direction: column;
+	gap: .5rem;
+}
+
+.log {
+	padding: 10px 15px;
+
+	display: grid;
+	grid-template-columns: 2fr 2fr 1fr 1fr .5fr 1fr;
+	align-items: center;
+	gap: 1rem;
+
+	border-radius: 10px;
+	background-color: var(--bl2-color);
+}
+.log > span {
+	text-align: center;
+}
+.log-head {
+	background-color: var(--bn-color);
+	color: var(--bn-txt-color);
+}
+.log-url {
+	background-color: var(--bl2-color);
+	color: var(--txt-color);
+	text-decoration: none;
+
+	transition: opacity .2s linear;
+
+	&:hover {
+		opacity: .6;
+	}
+}

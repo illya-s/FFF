@@ -1,0 +1,55 @@
+{% extends "base/statify.htm" %}
+{% load static %}
+
+{% block style %}
+<link rel="stylesheet" href="{% static 'css/statify/list.css' %}">
+<link rel="stylesheet" href="{% static 'css/statify/logs.css' %}">
+{% endblock %}
+
+{% block content %}
+<section class="content">
+	<div class="list-title main-block">
+		<h1>Ошибки</h1>
+
+		<select name="" id="filterSelect">
+			<option value="-1">Все</option>
+			<option value="error">Ошибки</option>
+		</select>
+	</div>
+
+	<div class="logs main-block" id="logList"></div>
+
+	<div class="pagination main-block" id="pagination">
+		{% include 'pagination.html' %}
+	</div>
+</section>
+{% endblock %}
+
+{% block script %}
+<script src="{% static 'js/load.js' %}"></script>
+
+<script>
+	$(function () {
+		const params = new URLSearchParams(window.location.search);
+
+		const logList = $('#logList');
+		const pagi    = $('#pagination');
+
+		function get_list() {
+			$.ajax({
+				type: "GET",
+				url: "{% url 'visitlog_list' %}",
+				data: {"filter": $('#filterSelect').val()},
+				dataType: "json",
+				success: function (response) {
+					logList.html(response.list)
+					pagi.html(response.pagi)
+				}
+			});
+		}
+		get_list()
+
+		$('#filterSelect').on('change', get_list)
+	});
+</script>
+{% endblock %}

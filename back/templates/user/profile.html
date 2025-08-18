@@ -1,0 +1,158 @@
+{% extends "base/base.htm" %}
+{% load static %}
+
+{% block style %}
+<meta name="robots" content="noindex, nofollow">
+
+<link rel="stylesheet" href="{% static 'css/user/profile.css' %}">
+{% endblock %}
+
+{% block content %}
+<section class="profile-wrapper">
+	<section class="profile-info-wrapper main-block">
+		<h2 class="profile-title">Ваш профиль</h2>
+	
+		<div class="profile-info-top">
+			<form method="post" enctype="multipart/form-data" class="user-avatar">
+				{% csrf_token %}
+
+				<div class="user-avatar-cont">
+					<label class="placeholder">
+						{{ avatar_form.avatar }}
+						<!-- <input id="uploadUserAvatar" type="file" name="avatar" style="display: none;"> -->
+
+						<svg width="513" height="513" viewBox="0 0 513 513" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<g clip-path="url(#clip0_533_2)">
+								<path d="M325.874 28.6184C288.384 -8.87262 227.6 -8.87263 190.109 28.6174L190.108 28.6184L121.585 97.1414C108.873 109.419 108.521 129.677 120.799 142.389C133.077 155.101 153.335 155.453 166.047 143.175C166.314 142.918 166.576 142.655 166.833 142.389L226.204 83.0404L226.695 374.218C226.695 391.891 241.022 406.218 258.695 406.218C276.368 406.218 290.695 391.891 290.695 374.218C290.695 356.545 290.247 83.5094 290.247 83.5094L349.148 142.41C361.86 154.688 382.118 154.336 394.396 141.624C406.373 129.223 406.373 109.563 394.396 97.1624L325.874 28.6184Z" fill="currentColor"/>
+								<path d="M480.5 309.833C462.827 309.833 448.5 324.16 448.5 341.833V439.774C448.488 444.588 444.589 448.488 439.775 448.499H73.225C68.411 448.487 64.511 444.588 64.5 439.774V341.833C64.5 324.16 50.173 309.833 32.5 309.833C14.827 309.833 0.5 324.16 0.5 341.833V439.774C0.547 479.92 33.08 512.453 73.225 512.5H439.774C479.92 512.453 512.452 479.92 512.499 439.775V341.834C512.5 324.16 498.173 309.833 480.5 309.833Z" fill="currentColor"/>
+							</g>
+							<defs>
+								<clipPath id="clip0_533_2">
+									<rect width="512" height="512" fill="currentColor" transform="translate(0.5 0.5)"/>
+								</clipPath>
+							</defs>
+						</svg>
+					</label>
+
+					<div class="user-logo">
+						{% if user.avatar %}
+						<img src="{{ user.avatar.url }}" alt="Аватар">
+						{% else %}
+						<div class="user-first-logo">{{ user.username|first }}</div>
+						{% endif %}
+					</div>
+				</div>
+
+				<button class="save-avatar" type="submit" disabled>Сохранить</button>
+			</form>
+		
+			<div class="profile-info">
+				<div class="profile-info-block">
+					<span>Логин:</span>
+					<div>
+						<h3>{{ user.username }}</h3>
+						<a href="{% url 'change_username' %}">
+							<svg width="513" height="513" viewBox="0 0 513 513" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M490 112.182C489.136 114.616 487.931 116.306 487.463 118.18C484.508 130.011 479.067 140.626 470.576 149.27C456.129 163.977 441.178 178.191 427.065 192C392.188 157.192 356.948 122.023 321 86.1466C336.491 71.2217 351.731 53.7135 369.734 39.7516C414.686 4.88981 479.1 31.0414 489.488 87.3144C490 95.5144 490 103.519 490 112.182Z" fill="currentColor"/>
+								<path d="M183.3 223.859C218.203 188.849 252.753 154.193 286.841 120C322.417 155.643 357.761 191.053 394 227.36C392.587 228.457 390.361 229.831 388.561 231.632C313.878 306.386 239.111 381.056 164.751 456.132C156.33 464.633 147.283 469.366 135.738 471.485C105.278 477.077 74.9523 483.405 44.5803 489.476C30.6695 492.257 21.7667 483.701 24.4894 469.962C31.0234 436.991 37.7295 404.053 44.1199 371.054C45.4789 364.036 48.6284 358.594 53.6845 353.559C96.8773 310.55 139.884 267.353 183.3 223.859Z" fill="currentColor"/>
+							</svg>
+							<span>Сменить</span>
+						</a>
+					</div>
+				</div>
+				<div class="profile-info-block">
+					<span>E-mail:</span>
+					<div class="profile-info-email">
+						<h3>{{ user.email }}</h3>
+
+						{% with request.user.emailaddress_set.first as email %}
+							{% if email.verified %}
+							<span>Почта подтверждена</span>
+							{% else %}
+							<span>Почта не подтверждена</span>
+							{% endif %}
+						{% endwith %}
+					</div>
+				</div>
+			</div>
+		</div>
+	
+		<hr>
+	
+		<div class="profile-aditional-info">
+			<div class="profile-date-joined">
+				<span>Дата регистрации:</span>
+				<span>{{ user.date_joined|date:"j M. Yг." }}</span>
+			</div>
+			{% if 0 == 1 %}
+			<div class="profile-lang">
+				<span>Язык интерыейса</span>
+				<select name="" id="">
+					<option value="ru">Рус</option>
+					<option value="ua">Укр</option>
+					<option value="en">Eng</option>
+				</select>
+			</div>
+			<div class="profile-theme">
+				<span>Тема</span>
+				<select name="" id="">
+					<option value="a">Авто</option>
+					<option value="d">Тёмная</option>
+					<option value="l">Светлая</option>
+				</select>
+			</div>
+			{% endif %}
+		</div>
+	</section>
+	
+	<a class="profile-logout-link" href="{% url 'logout' %}">Выйти</a>
+	
+	{% if 0 == 1 %}
+	<section class="profile-sessions-wrapper">
+		<h2 class="profile-title">Безопасность</h2>
+	
+		<div class="profile-session-list">
+			{% for session in sessions %}
+			<div class="profile-session">
+				<div class="profile-session-info">
+					<span class="profile-session-device">
+						{% if not session.is_mobile %}
+						<svg class="desctop" width="25" height="25" viewBox="0 0 513 513" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<g clip-path="url(#clip0_430_2)">
+								<path d="M513.5 419.5C513.5 424.522 513.5 429.544 513.146 435.133C511.668 438.622 510.79 441.669 509.381 444.446C501.235 460.495 487.68 467.493 470.098 467.495C368.614 467.505 267.13 467.5 165.646 467.5C125.153 467.5 84.6592 467.453 44.1657 467.52C24.8244 467.553 8.45528 456.588 3.32042 438.206C3.04274 437.212 2.1216 436.398 1.5 435.5C1.5 430.478 1.5 425.456 1.85456 419.862C3.49164 415.719 4.67123 412.105 6.07294 408.58C17.2451 380.483 28.5033 352.421 39.593 324.292C40.7105 321.457 41.4193 318.252 41.4226 315.218C41.5186 227.92 41.5001 140.622 41.5001 53.3238C41.5001 51.4108 41.5001 49.4977 41.5001 47.8118C185.916 47.8118 329.611 47.8118 473.5 47.8118C473.5 49.9379 473.5 51.7535 473.5 53.5691C473.5 140.867 473.483 228.165 473.574 315.463C473.577 318.337 474.258 321.371 475.315 324.057C485.725 350.498 496.271 376.886 506.807 403.278C508.976 408.71 511.266 414.094 513.5 419.5ZM79.063 77.5001C76.6264 77.5001 74.1899 77.5001 71.7809 77.5001C71.7809 154.451 71.7809 230.848 71.7809 307.22C195.789 307.22 319.515 307.22 443.216 307.22C443.216 230.543 443.216 154.146 443.216 77.5001C321.97 77.5001 201.008 77.5001 79.063 77.5001ZM249 392.5C236.909 392.5 224.817 392.5 212.798 392.5C212.798 402.819 212.798 412.552 212.798 422.209C242.82 422.209 272.543 422.209 302.202 422.209C302.202 412.182 302.202 402.449 302.202 392.5C284.604 392.5 267.302 392.5 249 392.5Z" fill="white"/>
+							</g>
+							<defs>
+								<clipPath id="clip0_430_2">
+									<rect width="512" height="512" fill="white" transform="translate(0.5 0.5)"/>
+								</clipPath>
+							</defs>
+						</svg>
+						{% else %}
+						<svg class="mobile" width="513" height="513" viewBox="0 0 513 513" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<g clip-path="url(#clip0_430_8)">
+								<path d="M357.5 513.5C291.146 513.5 224.792 513.5 157.85 513.136C124.604 506.25 102.979 479.427 103.309 442.409C104.074 356.649 103.552 270.877 103.552 185.11C103.552 145.807 103.465 106.504 103.581 67.2015C103.671 36.5641 122.222 11.8373 150.772 3.81942C153.052 3.17909 155.259 2.27924 157.5 1.5C223.855 1.5 290.209 1.5 357.151 1.86447C390.83 8.68222 411.835 35.3969 411.615 70.9887C411.096 154.772 411.448 238.561 411.448 322.348C411.448 364.158 411.533 405.968 411.42 447.778C411.337 478.431 392.789 503.159 364.23 511.18C361.95 511.821 359.742 512.721 357.5 513.5ZM132.543 123C132.543 209.591 132.543 296.182 132.543 382.914C216.153 382.914 299.172 382.914 382.186 382.914C382.186 284.251 382.186 186.01 382.186 87.7262C298.874 87.7262 215.833 87.7262 132.863 87.7262C132.71 88.3855 132.576 88.6959 132.575 89.0065C132.557 100.004 132.551 111.002 132.543 123ZM286.497 441.232C286.166 440.159 285.643 439.105 285.534 438.009C284.278 425.436 271.757 414.823 258.976 414.549C242.779 414.202 229.115 426.926 229.432 443.698C229.717 458.83 240.564 469.485 253.215 471.289C271.035 473.829 285.892 461.593 286.497 441.232Z" fill="white"/>
+							</g>
+							<defs>
+								<clipPath id="clip0_430_8">
+									<rect width="512" height="512" fill="white" transform="translate(0.5 0.5)"/>
+								</clipPath>
+							</defs>
+						</svg>
+						{% endif %}
+						{{ session.os }} - {{ session.browser }}
+					</span>
+					<span>{{ session.ip_address }} - {{ session.login_time }}</span>
+				</div>
+	
+				<span>sss</span>
+			</div>
+			{% endfor %}
+		</div>
+	</section>
+	{% endif %}
+</section>
+{% endblock %}
+
+{% block script %}
+<script src="{% static 'js/user/profile.js' %}"></script>
+{% endblock %}

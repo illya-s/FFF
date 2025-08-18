@@ -1,0 +1,61 @@
+@media (prefers-color-scheme: dark) {
+	:root {
+		--bg-color: hsl(225 21% 1%);
+
+		--hf-color: hsl(223 13% 9%);
+		--bl1-color: var(--hf-color);
+		--bl2-color: hsl(223 7% 15%);
+		--bl3-color: hsl(223, 7%, 25%);
+
+		--tit-color: hsl(223 44% 96%);
+		--txt-color: hsl(223 6% 70%);
+
+		--hf-txt-color: var(--tit-color);
+		--bl3-txt-color: hsl(223 17% 9%);
+
+		--highlight: hsl(223 4% 40%);
+		--br-color: hsl(223 5% 15%);
+		--border-muted: hsl(223 8% 19%);
+
+		--bn-color:  hsl(213 78% 73%);
+		--bn2-color: hsl(213 50% 80%);
+		--bn-txt-color: hsl(213 78% 1%);
+
+		--danger-color:  hsl(9 26% 64%);
+		--warning-color: hsl(52 19% 57%);
+		--success-color: hsl(146 17% 59%);
+		--info-color:    hsl(217 28% 65%);
+	}
+}
+@media (prefers-color-scheme: light) {
+	:root {
+		--bg-color: hsl(225 21% 88%);
+
+		--hf-color: hsl(223 13% 95%);
+		--bl1-color: var(--hf-color);
+		--bl2-color: hsl(223 7% 100%);
+		--bl3-color: var(--bl2-color);
+
+		--tit-color: hsl(0 0% 0%);
+		--txt-color: hsl(223 6% 25%);
+		--hf-txt-color: var(--tit-color);
+		--bl3-txt-color: hsl(223 17% 9%);
+		--bn-txt-color: hsl(213 78% 1%);
+
+		--highlight: hsl(223 4% 40%);
+		--br-color: hsl(223 5% 85%);
+		--border-muted: hsl(223 8% 19%);
+
+		--bn-color:  hsl(213 78% 73%);
+		--bn2-color: hsl(213 50% 80%);
+		--bn-txt-color: hsl(213 78% 1%);
+
+		--bn-color:  hsl(213 78% 73%);
+		--bn2-color: hsl(213 50% 80%);
+
+		--danger-color:  hsl(15 100% 40%);
+		--warning-color: hsl(23, 87%, 65%);
+		--success-color: hsl(100 100% 30%);
+		--info-color:    hsl(217, 100%, 55%);
+	}
+}

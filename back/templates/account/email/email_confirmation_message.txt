@@ -1,0 +1,9 @@
+{% extends "account/email/base_message.txt" %}
+
+{% block content %}
+Чтобы подтвердить адрес электронной почты, перейдите по ссылке ниже:
+
+{{ activate_url }}
+
+Если вы не регистрировались на сайте {{ current_site.domain }}, просто проигнорируйте это письмо.
+{% endblock %}

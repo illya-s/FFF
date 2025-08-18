@@ -1,0 +1,35 @@
+{% extends "base/base.htm" %}
+{% load static %}
+
+{% block style %}
+<meta name="robots" content="noindex, nofollow">
+
+<link rel="stylesheet" href="{% static 'css/user/watching.css' %}">
+{% endblock %}
+
+{% block content %}
+<section class="profile-wrapper">
+	<section class="profile-views-wrapper main-block">
+		<h2 class="profile-title">Продолжить просмотр</h2>
+
+		<div class="profile-views-list">
+			<div class="profile-view">
+				<span>Название</span>
+				<span>Озвучка</span>
+				<span>Дата</span>
+			</div>
+			{% for view in video_views %}
+			<div class="profile-view">
+				<a class="profile-view-link" href="{% url 'media' view.media.hash %}">{{ view.media.name }}</a>
+				<span>{{ view.media.voiceover.voiceover.name }}</span>
+				<span>{{ view.timestamp|date:"d M Y года" }}</span>
+			</div>
+			{% empty %}
+			<div class="profile-view-empty">
+				Тут пока ничего нет
+			</div>
+			{% endfor %}
+		</div>
+	</section>
+</section>
+{% endblock %}

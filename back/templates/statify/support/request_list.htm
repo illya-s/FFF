@@ -1,0 +1,39 @@
+{% extends "base/statify.htm" %}
+{% load static %}
+
+{% block style %}
+<link rel="stylesheet" href="{% static 'css/statify/list.css' %}">
+<link rel="stylesheet" href="{% static 'css/statify/request-list.css' %}">
+{% endblock %}
+
+{% block content %}
+<section class="content">
+	<div class="main-block list-title">
+		<h1>Запросы на поддержку</h1>
+	</div>
+
+	<div class="request-list main-block">
+		<table>
+			<thead>
+				<tr>
+					<th>Время</th>
+					<th>Тема</th>
+					<th>Имя</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for error in page %}
+				<tr>
+					<td>{{ error.created }}</td>
+					<td>{{ error.subject }}</td>
+					<td>{{ error.full_name }}</td>
+				</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+
+		<div class="paggination" id="pagination">
+			{% include 'pagination.html' %}
+		</div>
+</section>
+{% endblock %}

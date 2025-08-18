@@ -1,0 +1,34 @@
+{% extends "base/auth.htm" %}
+{% load static %}
+
+
+{% block style %}
+<link rel="stylesheet" href="{% static 'css/user/login.css' %}">
+{% endblock %}
+
+{% block content %}
+<section class="content main-block">
+	<section class="lr-form-wrapper">
+		<div class="lr-form-top">
+			<img class="lr-form-top-logo" src="{% static 'icons/favicon.png' %}" alt="">
+			<h1 class="lr-form-top-title">Введите код подтверждения</h1>
+		</div>
+
+		<form class="lr-form" method="post">
+			{% csrf_token %}
+
+			<div class="lr-form-cont">
+				<div class="lr-form-email-wrapper lr-form-line">
+					<h4 class="lr-form-line-name">Введите код</h4>
+					<input class="code" type="text" name="code" placeholder="Введите код" required>
+				</div>
+				<button class="lr-form-submit" type="submit">Войти</button>
+			</div>
+		</form>
+	</section>
+
+	<div class="side-image">
+		<img src="{% static 'img/auth/bg.png' %}" alt="">
+	</div>
+</section>
+{% endblock %}

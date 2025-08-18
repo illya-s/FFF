@@ -1,0 +1,59 @@
+form {
+	padding: 2rem;
+
+	display: grid;
+	grid-template-rows: max-content auto;
+	align-items: center;
+	gap: 1.1rem;
+
+	border-radius: 20px;
+	background-color: var(--bl1-color);
+	box-shadow: 0px 0px 35px var(--bl2-color);
+}
+form * {
+	color: var(--txt-color);
+}
+
+form h1 {
+	text-align: center;
+
+	font-size: 1.3rem;
+	font-weight: normal;
+}
+
+.form-content {
+	display: grid;
+	gap: 5px;
+}
+
+.url {
+	text-align: center;
+
+	font-size: .9rem;
+
+	transition: opacity .2s linear;
+
+	&:hover {
+		opacity: .5;
+	}
+}
+
+
+
+@media screen and (max-width: 720px) {
+	form {
+		border-radius: 0;
+	}
+
+	form h1 {
+		font-size: 1.4rem;
+	}
+
+	.form-content {
+		grid-auto-rows: max-content;
+	}
+
+	.url {
+		font-size: 1rem;
+	}
+}

@@ -1,0 +1,27 @@
+#message-container {
+	position: fixed;
+	inset: 0 var(--main-padding) auto var(--main-padding);
+	z-index: 1000;
+
+	height: max-content;
+
+	display: flex;
+	flex-direction: column;
+	gap: .25rem;
+	align-items: center;
+}
+
+.alert {
+	position: relative;
+
+	padding: 10px 20px;
+
+	border-radius: var(--border);
+	background-color: #4caf50;
+
+	color: white;
+}
+
+.alert.error { background-color: #f44336; }
+.alert.warning { background-color: #ff9800; }
+.alert.info { background-color: #2196F3; }

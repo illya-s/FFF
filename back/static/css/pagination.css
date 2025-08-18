@@ -1,0 +1,72 @@
+:root {
+	--page-link-width: 35px;
+	--page-link-gap: 1rem;
+}
+
+#pagination, .pagi {
+	display: grid;
+	grid-template-columns: var(--page-link-width) auto var(--page-link-width);
+	grid-template-rows: max-content;
+	gap: var(--page-link-gap);
+
+	align-items: center;
+	justify-content: center;
+
+	color: var(--txt-color);
+}
+
+.page-number, .page-dots, .page-link, .page-link-not-active {
+	padding: 5px;
+
+	display: grid;
+	place-content: center;
+	aspect-ratio: 1;
+
+	border: none;
+	border-radius: 10px;
+	background-color: var(--bn-color);
+
+	color: var(--bn-txt-color);
+	font-weight: bold;
+
+	user-select: none;
+}
+
+.page-link, .page-link-not-active {
+	padding: 5px;
+
+	display: grid;
+	place-content: center;
+	place-items: center;
+	aspect-ratio: 1;
+
+	& > svg {
+		width: auto; height: 100%;
+	}
+}
+
+.page-link-not-active, .page-number, .page-dots {
+	background-color: var(--bl2-color);
+	color: var(--bl2-txt-color);
+}
+
+
+.page-links {
+	display: grid;
+	grid-template-columns: var(--page-link-width) var(--page-link-width);
+	grid-auto-columns: var(--page-link-width);
+	grid-auto-flow: column;
+	gap: var(--page-link-gap);
+}
+
+.page-dots, .page-links > button {
+	width: var(--page-link-width);
+}
+
+
+@media screen and (max-width: 720px) {
+	:root {
+		--page-link-width: 36px;
+		--page-link-gap: .4rem;
+	}
+}

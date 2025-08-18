@@ -1,0 +1,23 @@
+.content:has(.codes-block) {
+    display: grid;
+}
+
+.codes-block {
+    align-self: center;
+    justify-self: center;
+
+    color: var(--txt-color);
+    font-size: 1rem;
+    text-align: center;
+}
+
+.codes-block > h1 {
+    color: var(--danger-color);
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.codes-block a {
+    text-decoration: underline;
+    color: var(--warning-color);
+}

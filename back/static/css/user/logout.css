@@ -1,0 +1,24 @@
+section {
+	padding: 2rem;
+
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 1rem;
+
+	border-radius: 20px;
+	background-color: var(--bl1-color);
+	box-shadow: 0px 0px 35px var(--bl2-color);
+}
+
+section * {
+	color: var(--txt-color);
+}
+
+section > h1 {
+	color: var(--tit-color);
+	text-align: center;
+
+	font-size: 1.3rem;
+	font-weight: normal;
+}

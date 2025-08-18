@@ -1,0 +1,27 @@
+{% extends 'base/base.htm' %}
+{% load static %}
+
+
+{% block style %}
+<meta name="robots" content="noindex, nofollow">
+
+<link rel="stylesheet" href="{% static 'css/pagination.css' %}">
+
+<link rel="stylesheet" href="{% static 'css/video/list.css' %}">
+<link rel="stylesheet" href="{% static 'css/user/media_statuses.css' %}">
+{% endblock %}
+
+{% block content %}
+<section class="content">
+	<section class="main-block media-list">
+		{% if not isEmpty %}
+		<div class="list">{{ list }}</div>
+		<div class="pagi">{{ pagi }}</div>
+		{% else %}
+		<div class="media-list-empty">
+			Тут пока ничего нет
+		</div>
+		{% endif %}
+	</section>
+</section>
+{% endblock %}

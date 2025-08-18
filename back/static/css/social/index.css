@@ -1,0 +1,22 @@
+.list {
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+}
+
+.list-block {
+    display: grid;
+    grid-template-columns: auto max-content;
+    align-items: center;
+    gap: .5rem;
+
+    color: var(--txt-color);
+}
+.list-block > a {
+    display: grid;
+    grid-template-columns: 30px max-content;
+    align-items: center;
+    gap: .5rem;
+
+    color: var(--tit-color);
+}

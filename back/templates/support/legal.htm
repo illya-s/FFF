@@ -1,0 +1,20 @@
+{% extends "base/base.htm" %}
+{% load static %}
+
+{% block style %}
+<link rel="stylesheet" href="{% static 'css/support/legal.css' %}">
+{% endblock %}
+
+{% block content %}
+<section class="content">
+	<section class="main-block">
+		<h1 class="policy-top-title">Пользовательское соглашение и Политика конфиденциальности</h1>
+	</section>
+	<section class="main-block ck-content">
+		{{ terms_of_service|safe }}
+	</section>
+	<section class="main-block ck-content">
+		{{ privacy_policy|safe }}
+	</section>
+</section>
+{% endblock %}

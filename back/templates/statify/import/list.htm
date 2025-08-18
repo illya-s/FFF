@@ -1,0 +1,43 @@
+{% extends "base/statify.htm" %}
+{% load static %}
+
+{% block style %}
+<link rel="stylesheet" href="{% static 'css/statify/list.css' %}">
+<link rel="stylesheet" href="{% static 'css/statify/log-list.css' %}">
+{% endblock %}
+
+{% block content %}
+<section class="content">
+	<div class="list-title main-block">
+		<h1>Ошибки импорта медиа</h1>
+	</div>
+
+	<div class="log-list main-block">
+		<div class="log-head">
+			<span>Время</span>
+			<span>Создано</span>
+			<span>Обновлено</span>
+			<span>Пропущено</span>
+			<span>Ошибки</span>
+			<span>Соотношение</span>
+		</div>
+		{% for log in page %}
+		<a href="{% url 'import_detail' log.id  %}" class="log-block">
+			<span>{{ log.timestamp|date:"d.m.Y - h:i" }}</span>
+			<span style="text-align: center;">{{ log.created_count }}</span>
+			<span style="text-align: center;">{{ log.updated_count }}</span>
+			<span style="text-align: center;">{{ log.skipped_count }}</span>
+			<span style="text-align: center;">{{ log.error_count }}</span>
+			<span class="log-ratio">
+				<p style="text-align: start;">{{ log.loaded_count }}</p>
+				<p style="text-align: center;">/</p>
+				<p style="text-align: end;">{{ log.total_count }}</p>
+			</span>
+		</a>
+		{% endfor %}
+		<div class="paggination" id="pagination">
+			{% include 'pagination.html' %}
+		</div>
+	</div>
+</section>
+{% endblock %}

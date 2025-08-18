@@ -1,0 +1,14 @@
+.profile-info {
+	padding: var(--padding);
+
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+
+	border-radius: var(--border);
+	background-color: var(--bl1-color);
+}
+
+.profile-info * {
+	color: var(--txt-color);
+}

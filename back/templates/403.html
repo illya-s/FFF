@@ -1,0 +1,17 @@
+{% extends 'base/base.htm' %}
+{% load static %}
+
+
+{% block style %}
+<link rel="stylesheet" href="{% static 'css/errors.css' %}">
+{% endblock %}
+
+{% block content %}
+	<section class="main-block">
+		<h1>Ошибка 403 — Доступ запрещён</h1>
+		<p>У вас нет прав для просмотра этой страницы.</p>
+		<p>Если вы считаете, что это ошибка, свяжитесь с администратором.</p>
+		<p>Если вы считаете, что это ошибка, <a href="{% url 'support' %}">напишите в поддержку</a>.</p>
+		<a href="/">Вернуться на главную</a>
+	</section>
+{% endblock %}

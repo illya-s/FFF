@@ -1,0 +1,49 @@
+{% extends "base/statify.htm" %}
+{% load static %}
+{% load format_filters %}
+
+{% block style %}
+<link rel="stylesheet" href="{% static 'css/statify/log-datail.css' %}">
+{% endblock %}
+
+{% block content %}
+<section class="content">
+	<div class="log-title main-block">
+		<a href="{% url 'visitlog' %}">
+			<svg width="513" height="512" viewBox="0 0 513 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+				<path d="M360.5 448L152.5 256L360.5 64" stroke="currentColor" stroke-width="50" stroke-linecap="round"/>
+			</svg>
+		</a>
+		<h1>Детали запроса</h1>
+	</div>
+
+	<section class="log-info main-block">
+		<div>
+			<p>
+				[{{ log.timestamp|date:"Y-m-d h:m:s" }},{{ log.timestamp|ms }}]
+				{% if 400 < log.status_code < 600 %}ERROR{% else %}LOG{% endif %} {{ log.type }}
+				"{{ log.method }} {{ log.path }} {{ log.protocol }}" {{ log.status_code }}
+			</p>
+		</div>
+		<div>
+			<p>
+				[{{ log.ip }}]
+				{% if log.country %}🌍 {{ log.country }}{% else %}🌍 Unknown{% endif %}
+				{% if log.user %}{{ user.username }}{% else %}GUEST{% endif %}
+			</p>
+		</div>
+
+		<div>
+			<p><b>session_key:</b> {{ log.session_key }}</p>
+		</div>
+
+		<div>
+			<p>{{ log.user_agent }}</p>
+		</div>
+
+		<div>
+			<pre>{{ log.description }}</pre>
+		</div>
+	</section>
+</section>
+{% endblock %}

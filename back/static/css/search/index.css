@@ -1,0 +1,17 @@
+.current-search {
+	display: flex;
+	flex-direction: column;
+	gap: .25rem;
+}
+.current-search > span {
+	color: var(--txt-color);
+	font-size: 1rem;
+}
+.current-search > h1 {
+	color: var(--tit-color);
+	font-size: 1.3rem;
+}
+
+.search-message {
+	color: var(--warning-color);
+}

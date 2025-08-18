@@ -1,0 +1,21 @@
+{% extends "account/base_entrance.html" %}
+{% load i18n %}
+{% load allauth %}
+
+{% block head_title %}
+    {% trans "Verify Your Email Address" %}
+{% endblock head_title %}
+
+{% block content %}
+<section>
+    {% element h1 %}
+        {% trans "Verify Your Email Address" %}
+    {% endelement %}
+    
+    <p>
+        Мы отправили вам письмо для проверки.<br><br>
+        Перейдите по предоставленной ссылке, чтобы завершить процесс регистрации.<br><br>
+        Если вы не видите письмо с проверкой в ​​своем основном почтовом ящике, проверьте папку со спамом. Пожалуйста, свяжитесь с нами, если вы не получите письмо с проверкой в ​​течение нескольких минут.
+    </p>
+</section>
+{% endblock content %}
